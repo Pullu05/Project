@@ -60,7 +60,7 @@ public class LoginService {
 
         boolean result = false;
         Connection con = JDBCConnectionManager.getConnection();
-        String sql = "INSERT INTO users(emailAddress,password,firstName,lastName)" + "VALUES(? ,? ,? ,?)";
+        String sql = "INSERT INTO users(emailAddress,password,firstName,lastName,countryId,stateId,distictId)" + "VALUES(? ,? ,? ,?, ?, ?, ?)";
 
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -69,7 +69,10 @@ public class LoginService {
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFirstName());
             preparedStatement.setString(4, user.getLastName());
-
+            preparedStatement.setInt(5, user.getCountryId());
+            preparedStatement.setInt(6, user.getStateId());
+            preparedStatement.setInt(7, user.getDistrictId());
+            
             System.out.println("LoginService :: " + preparedStatement);
 
             int rs = preparedStatement.executeUpdate();

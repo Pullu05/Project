@@ -26,9 +26,15 @@
         <action name="EditEmployee" class="com.exavalu.models.Employee" method="doEditEmployee">
             <result name="SUCCESS">editemployee.jsp</result>
         </action> 
-         <action name="SaveEmployee" class="com.exavalu.models.Employee" method="doUpdateEmployee">
+        <action name="SaveEmployee" class="com.exavalu.models.Employee" method="doUpdateEmployee">
             <result name="SUCCESS">employeeDetails.jsp</result>
             <result name="FAILURE">editemployee.jsp</result>
-        </action>     
+        </action>
+        <action name="PreProssing" class="com.exavalu.models.Users" method="doPreSignUp">
+            <result name="FAILURE">signup.jsp</result>
+             <result name="SUCCESS">login.jsp</result>
+        </action>
+        
+               
     </package>
 </struts>

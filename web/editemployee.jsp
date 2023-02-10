@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="salary" name="salary" value="${emp.getBasicSalary()}">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="salary" name="basicSalary" value="${emp.getBasicSalary()}">
                         <label for="floatingInput">Salary</label>
                     </div>
 

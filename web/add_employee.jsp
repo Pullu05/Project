@@ -32,7 +32,7 @@
         <jsp:include page="menu.jsp"></jsp:include>
             <main class="form-signin w-25 m-auto">
 
-                <form action="AddEmployee" method="post">
+                <form action="AddEmployee" method="POST">
                     <h1 class="h3 mb-3 fw-normal">Please Add Employee Details</h1>
 
                 <c:set var="msg" value="${ErrorMsg2}"/>
