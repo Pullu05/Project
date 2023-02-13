@@ -16,7 +16,8 @@
             }
             ul{
                 font-size:25px;
-            }li{
+            }
+            li{
                 padding:0px 8px;
             }
         </style>
@@ -35,7 +36,6 @@
                         <li><a href="search.jsp" class="nav-link px-2 text-white">Search</a></li>
                         <li><a href="employeeDetails.jsp" class="nav-link px-2 text-white">Show</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">Update</a></li>
-
                         <a class="nav-link px-2 text-bg-light">
                             WELCOME :
                             <c:set var="user" value="${USER}"/>
@@ -49,7 +49,8 @@
                             <li><a href="login.jsp" class="nav-link px-2 text-white">Search</a></li>
                             <li><a href="login.jsp" class="nav-link px-2 text-white">Show</a></li>
                             <li><a href="login.jsp" class="nav-link px-2 text-white">Update</a></li>
-                        </c:if>
+                            <li><a href="APIfetch" class="nav-link px-2 text-white">Add data from API</a></li>
+                            </c:if>
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">

@@ -106,18 +106,21 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
         sessionMap.put("CountryList", countryList);
         
         System.err.println("CountryId: "+this.countryId);
-        System.err.println("CountryId: "+this.stateId);
-        System.err.println("CountryId: "+this.districtId);
+        System.err.println("stateID: "+this.stateId);
+        System.err.println("DistrictId: "+this.districtId);
         
         if(this.countryId!=0){
             stateList = StateService.getAllStateAccordingToCountry(this.countryId);
             sessionMap.put("StateList", stateList);
             sessionMap.put("User", this);
+            System.out.print(("Returne from statelist!!!!"));
+            result ="STATELIST";
         }
-         if(this.countryId!=0 && this.stateId!=0){
+         if(this.stateId!=0){
             distictList = DistictService.getAllDistictAccordingToState(this.stateId);
             sessionMap.put("DistictList", distictList);
             sessionMap.put("User", this);
+             result ="DISTRICTLIST";
         }
              
        if(this.firstName!=null && this.lastName!=null && this.email!=null && this.password!=null && this.countryId!=0 && this.districtId!=0 && this.stateId!=0){       

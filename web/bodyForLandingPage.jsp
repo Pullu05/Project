@@ -1,4 +1,20 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <main class="container">
+
+    <c:set var="msg" value="${Success_Msg}"/>                   
+    <c:if test="${msg!=null}">
+        <div class="alert alert-success msg_style" role="alert">
+            <c:out value="${msg}"/>
+        </div>
+    </c:if>
+    
+    <c:set var="msg" value="${Error_Msg}"/>                   
+    <c:if test="${msg!=null}">
+        <div class="alert alert-danger msg_style" role="alert">
+            <c:out value="${msg}"/>
+        </div>
+    </c:if>
+
     <div class="row mb-2">
         <div class="col-md-6">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">

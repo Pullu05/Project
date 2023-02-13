@@ -20,11 +20,58 @@
     </head>
 
     <body class="text-center">
+        <script src="https://code.jquery.com/jquery-3.6.3.js"
+                integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" 
+                crossorigin="anonymous">
+
+        </script>
 
         <script>
-            function findCountryId() {
-                var countryId = document.getElementById("CountryId").value;
+            function reSubmit() {
+                var countryId = document.getElementById("countryId").value;
                 submitForm.submit();
+            }
+
+//            function fetchContent(selectedId, targetId) {
+//                alert("'#" + selectedId.name + "'");
+//                if (selectedId.name === "countryId") {
+//                     $("#" + selectedId.name).change(function () {
+//                             $.ajax({
+//                                 url: 'PreProssing',
+//                            data: {
+//                                countryId: $("#" + selectedId.name).val()
+//                            },
+//                            success: function (responseText) {
+//                                //alert(responseText);
+//                                $("#" + targetId.name).html(responseText);
+//                              }
+//                                        });
+//                                });
+//                } else if (selectedId.name === "stateId") {
+//                     $("#" + selectedId.name).change(function () {
+//                             $.ajax({
+//                                 url: 'PreProssing',
+//                            data: {
+//                                stateId: $("#" + selectedId.name).val()
+//                            },
+//                            success: function (responseText) {
+//                                //alert(responseText);
+//                                $("#" + targetId.name).html(responseText);
+//                              }
+//                                        });
+//                                });
+//                }
+//            }
+            function fetchContent(selectedId, targetId) {
+                $.ajax({
+                    url: 'PreProssing',
+                    data: {
+                        [selectedId]: $("#" + selectedId).val()
+                    },
+                    success: function (responseText) {
+                        $("#" + targetId).html(responseText);
+                    }
+                });
             }
         </script>
 
@@ -60,7 +107,7 @@
 
                 <div class="form-floating">
 
-                    <select name="countryId" class="form-select" id="CountryId" onchange="findCountryId()" required="required" >
+                    <select name="countryId" class="form-select" id="countryId" onchange="fetchContent('countryId', 'stateId')">
                         <option value="0" >Select Country </option>                       
                         <c:forEach items="${CountryList}" var="country">   
                             <option value="${country.getCountryId()}" <c:if test="${country.getCountryId()==(User.getCountryId())}"> selected </c:if>> 
@@ -70,25 +117,17 @@
                     </select>
                     <label for="floatingInput">Country</label>
                 </div>
-                <div class="form-floating">
 
-                    <select name="stateId" class="form-select" id="stateId" onchange="findCountryId()"required="required" >
-                        <option value="0">Select State </option>                       
-                        <c:forEach items="${StateList}" var="state">   
-                            <option value="${state.getStateId()}" <c:if test="${state.getStateId()==(User.getStateId())}"> selected </c:if>> 
-                                <c:out value="${state.getStateName()}"/>  
-                            </option>
-                        </c:forEach>
+                <div class="form-floating">
+                    <select name="stateId" class="form-select" id="stateId" onchange="fetchContent('stateId', 'districtId')"  >
+                        <option value="0">Select State </option>      
                     </select>
                     <label for="floatingInput">State</label>
                 </div>
-                <div class="form-floating">
 
-                    <select name="districtId" class="form-select" id="districtId" required="required">
+                <div class="form-floating">
+                    <select name="districtId" class="form-select" id="districtId">
                         <option value="0">Select district </option>
-                        <c:forEach items="${DistictList}" var="distict">   
-                            <option value="${distict.getDistictId()}" > <c:out value="${distict.getDistictName()}"/>  </option>
-                        </c:forEach>
                     </select>
                     <label for="floatingInput">District</label>
                 </div>
