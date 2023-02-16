@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -72,7 +74,7 @@ public class LoginService {
             preparedStatement.setInt(5, user.getCountryId());
             preparedStatement.setInt(6, user.getStateId());
             preparedStatement.setInt(7, user.getDistrictId());
-            
+
             System.out.println("LoginService :: " + preparedStatement);
 
             int rs = preparedStatement.executeUpdate();
@@ -82,7 +84,8 @@ public class LoginService {
             }
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Logger log = Logger.getLogger(LoginService.class.getName());
+            log.error(LocalDateTime.now()+ "-- Error in the SignUp Process !!!!!" +" Error Code: "+ex.getErrorCode());
         }
         return result;
     }

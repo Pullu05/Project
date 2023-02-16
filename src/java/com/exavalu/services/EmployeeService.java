@@ -4,48 +4,43 @@
  */
 package com.exavalu.services;
 
-
 import com.exavalu.models.Employee;
 import com.exavalu.utils.JDBCConnectionManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Avijit Chattopadhyay
  */
 public class EmployeeService {
-    
+
     public static EmployeeService employeeService = null;
-    
-    public static EmployeeService getInstance()
-    {
-        if(employeeService==null)
-        {
+
+    public static EmployeeService getInstance() {
+        if (employeeService == null) {
             return new EmployeeService();
-        }
-        else
-        {
+        } else {
             return employeeService;
         }
     }
-    
-    public ArrayList getAllEmployees()
-    {
+
+    public ArrayList getAllEmployees() {
         ArrayList empList = new ArrayList();
-         String sql = "SELECT  id,firstName,lastName,phone,gender,age,departmentName,roleName,salary,specialAllowance,carAllowance FROM newemployees LEFT JOIN roles On newemployees.roleId= roles.roleId LEFT JOIN departments On newemployees.departmentId= departments.departmentId";
+        String sql = "SELECT  id,firstName,lastName,phone,gender,age,departmentName,roleName,salary,specialAllowance,carAllowance FROM newemployees LEFT JOIN roles On newemployees.roleId= roles.roleId LEFT JOIN departments On newemployees.departmentId= departments.departmentId";
         try {
             Connection con = JDBCConnectionManager.getConnection();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next())
-            {
+
+            while (rs.next()) {
                 Employee emp = new Employee();
-                
+
                 emp.setId(rs.getInt("id"));
                 emp.setFirstName(rs.getString("firstName"));
                 emp.setLastName(rs.getString("lastName"));
@@ -57,20 +52,20 @@ public class EmployeeService {
                 emp.setBasicSalary(rs.getDouble("salary"));
                 emp.setSpecialAllowance(rs.getDouble("specialAllowance"));
                 emp.setCarAllowance(rs.getDouble("carAllowance"));
-                
+
                 empList.add(emp);
             }
-            
-            
-        }
-        catch (SQLException ex) {
+
+        } catch (SQLException ex) {
             ex.printStackTrace();
+            Logger log = Logger.getLogger(EmployeeService.class.getName());
+            log.error(LocalDateTime.now() + "-- Error in the getAllEmployees Process !!!!!" + " Error Code: " + ex.getErrorCode());
         }
-        System.err.println("Total rows:"+empList.size());
+        System.err.println("Total rows:" + empList.size());
         return empList;
     }
-    
-     public Boolean AddEmployeeData(Employee emp) {
+
+    public Boolean AddEmployeeData(Employee emp) {
         boolean result = false;
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -78,7 +73,7 @@ public class EmployeeService {
                     + "VALUES(? ,? ,? ,? , ? , ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
-                        
+
             preparedStatement.setString(1, emp.getFirstName());
             preparedStatement.setString(2, emp.getLastName());
             preparedStatement.setString(3, emp.getPhoneNumber());
@@ -99,12 +94,14 @@ public class EmployeeService {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Logger log = Logger.getLogger(EmployeeService.class.getName());
+            log.error(LocalDateTime.now() + "-- Error in the AddEmployeeData Process !!!!!" + " Error Code: " + ex.getErrorCode());
         }
 
         return result;
     }
-     
-     public ArrayList showSearchEmployeeList(Employee emp1) {
+
+    public ArrayList showSearchEmployeeList(Employee emp1) {
         ArrayList empList = new ArrayList();
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -152,12 +149,14 @@ public class EmployeeService {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Logger log = Logger.getLogger(EmployeeService.class.getName());
+            log.error(LocalDateTime.now() + "-- Error in the showSearchEmployeeList Process !!!!!" + " Error Code: " + ex.getErrorCode());
         }
 
         return empList;
     }
-     
-      public  Employee getEmployee(String employeeId) {
+
+    public Employee getEmployee(String employeeId) {
         Employee emp = new Employee();
         try {
             Connection con = JDBCConnectionManager.getConnection();
@@ -185,12 +184,14 @@ public class EmployeeService {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Logger log = Logger.getLogger(EmployeeService.class.getName());
+            log.error(LocalDateTime.now() + "-- Error in the getEmployee Process !!!!!" + " Error Code: " + ex.getErrorCode());
         }
 
         return emp;
     }
-    
-     public boolean updateEmployee(Employee emp, String employeeId) {
+
+    public boolean updateEmployee(Employee emp, String employeeId) {
 
         boolean result = false;
         try {
@@ -214,17 +215,18 @@ public class EmployeeService {
             preparedStatement.setDouble(10, emp.getCarAllowance());
 
             preparedStatement.setString(11, employeeId);
-            
+
             System.out.println("SQl=" + preparedStatement);
             int row = preparedStatement.executeUpdate();
 
-            
             if (row == 1) {
                 result = true;
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Logger log = Logger.getLogger(EmployeeService.class.getName());
+            log.error(LocalDateTime.now() + "-- Error in the updateEmployee Process !!!!!" + " Error Code: " + ex.getErrorCode());
         }
         return result;
     }

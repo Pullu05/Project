@@ -12,8 +12,10 @@ import com.exavalu.services.LoginService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
+import org.apache.log4j.Logger;
 import org.apache.struts2.dispatcher.ApplicationMap;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.ApplicationAware;
@@ -67,6 +69,8 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
             String errorMsg = "Either Email Address or Password is Wrong";
             sessionMap.put("ErrorMsg", errorMsg);
             System.out.println("returning Failure from doLogin method");
+            Logger log = Logger.getLogger(Users.class.getName());
+            log.error(LocalDateTime.now()+ "-- Error in the Login Service !!!!!");
         }
         return result;
     }
@@ -95,41 +99,41 @@ public class Users extends ActionSupport implements ApplicationAware, SessionAwa
 
         return result;
     }
-    
+
     public String doPreSignUp() throws Exception {
         String result = "FAILURE";
-        ArrayList countryList =CountryService.getAllCountry();
-        ArrayList stateList =null;
-        ArrayList distictList =null;
-        
-        
+        ArrayList countryList = CountryService.getAllCountry();
+        ArrayList stateList = null;
+        ArrayList distictList = null;
+
         sessionMap.put("CountryList", countryList);
-        
-        System.err.println("CountryId: "+this.countryId);
-        System.err.println("stateID: "+this.stateId);
-        System.err.println("DistrictId: "+this.districtId);
-        
-        if(this.countryId!=0){
+
+        System.err.println("CountryId: " + this.countryId);
+        System.err.println("stateID: " + this.stateId);
+        System.err.println("DistrictId: " + this.districtId);
+
+        if (this.countryId != 0) {
             stateList = StateService.getAllStateAccordingToCountry(this.countryId);
             sessionMap.put("StateList", stateList);
             sessionMap.put("User", this);
             System.out.print(("Returne from statelist!!!!"));
-            result ="STATELIST";
+            result = "STATELIST";
         }
-         if(this.stateId!=0){
+        if (this.stateId != 0) {
             distictList = DistictService.getAllDistictAccordingToState(this.stateId);
             sessionMap.put("DistictList", distictList);
             sessionMap.put("User", this);
-             result ="DISTRICTLIST";
+            result = "DISTRICTLIST";
         }
-             
-       if(this.firstName!=null && this.lastName!=null && this.email!=null && this.password!=null && this.countryId!=0 && this.districtId!=0 && this.stateId!=0){       
-           result = this.doSignUp();
-           
-       }  
-       
+
+        if (this.firstName != null && this.lastName != null && this.email != null && this.password != null && this.countryId != 0 && this.districtId != 0 && this.stateId != 0) {
+            result = this.doSignUp();
+
+        }
+
         return result;
     }
+
 
     public int getCountryId() {
         return countryId;

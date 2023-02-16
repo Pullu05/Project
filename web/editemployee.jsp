@@ -50,81 +50,81 @@
     <body class="text-center">
         <jsp:include page="menu.jsp"></jsp:include>
             <main class="form-signin w-100 m-auto">
-   
+
             <c:set var="emp" value="${Emp}"/>
-                <form action="SaveEmployee" method="post">
-                    <h1 class="h3 mb-3 fw-normal">Please Update Details</h1>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="employeeId" name="id" value="${emp.getId()}" readonly>
-                        <label for="floatingInput">Employee Id</label>
-                    </div>
+            <form action="SaveEmployee" method="post">
+                <h1 class="h3 mb-3 fw-normal">Please Update Details</h1>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="employeeId" name="id" value="${emp.getId()}" readonly>
+                    <label for="floatingInput">Employee Id</label>
+                </div>
 
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="firstName" name="firstName" value="${emp.getFirstName()}" >
-                        <label for="floatingInput">First Name</label>
-                    </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="firstName" name="firstName" value="${emp.getFirstName()}" >
+                    <label for="floatingInput">First Name</label>
+                </div>
 
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="lastName" name="lastName" value="${emp.getLastName()}">
-                        <label for="floatingInput">Last Name</label>
-                    </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="lastName" name="lastName" value="${emp.getLastName()}">
+                    <label for="floatingInput">Last Name</label>
+                </div>
 
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="phone" name="phoneNumber" value="${emp.getPhoneNumber()}">
-                        <label for="floatingInput">Phone</label>
-                    </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="phone" name="phoneNumber" value="${emp.getPhoneNumber()}">
+                    <label for="floatingInput">Phone</label>
+                </div>
 
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="gender" name="gender" value="${emp.getGender()}">
-                        <label for="floatingInput">Gender</label>
-                    </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="gender" name="gender" value="${emp.getGender()}">
+                    <label for="floatingInput">Gender</label>
+                </div>
 
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="age" name="age" value="${emp.getAge()}">
-                        <label for="floatingInput">age</label>
-                    </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="age" name="age" value="${emp.getAge()}">
+                    <label for="floatingInput">age</label>
+                </div>
 
-                    <div class="form-floating"> 
-                        
-                        <select name="departmentId" class="form-select" id="departmentId">
+                <div class="form-floating"> 
+
+                    <select name="departmentId" class="form-select" id="departmentId">
                         <c:forEach items="${DeptList}" var="dept">
                             <option value="${dept.getDepartmentId()}"  <c:if test="${dept.getDepartmentName().equalsIgnoreCase(emp.getDeptName())}"> selected </c:if>> <c:out value="${dept.getDepartmentName()}"/> </option>
                         </c:forEach>
-                        </select>
-                        <label for="floatingInput">Department Name</label>
-                    </div>
+                    </select>
+                    <label for="floatingInput">Department Name</label>
+                </div>
 
-                    <div class="form-floating"> 
-                         
-                        <select name="roleId" class="form-select" id="roleId">
-                            <c:forEach items="${RoleList}" var="role">
-                                <option value="${role.getRoleId()}" <c:if test="${role.getRoleName().equalsIgnoreCase(emp.getRoleName())}"> selected </c:if> > <c:out value="${role.getRoleName()}"/>  </option>
-                            </c:forEach>
-                        </select>
-                       <label for="floatingInput">Role Name</label>
-                    </div>
+                <div class="form-floating"> 
 
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="salary" name="basicSalary" value="${emp.getBasicSalary()}">
-                        <label for="floatingInput">Salary</label>
-                    </div>
+                    <select name="roleId" class="form-select" id="roleId">
+                        <c:forEach items="${RoleList}" var="role">
+                            <option value="${role.getRoleId()}" <c:if test="${role.getRoleName().equalsIgnoreCase(emp.getRoleName())}"> selected </c:if> > <c:out value="${role.getRoleName()}"/>  </option>
+                        </c:forEach>
+                    </select>
+                    <label for="floatingInput">Role Name</label>
+                </div>
 
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="specialAllowance" name="specialAllowance" value="${emp.getSpecialAllowance()}">
-                        <label for="floatingInput">Special Allowance</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="carAllowance" name="carAllowance" value="${emp.getCarAllowance()}">
-                        <label for="floatingInput">Car Allowance</label>
-                    </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="salary" name="basicSalary" value="${emp.getBasicSalary()}">
+                    <label for="floatingInput">Salary</label>
+                </div>
+
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="specialAllowance" name="specialAllowance" value="${emp.getSpecialAllowance()}">
+                    <label for="floatingInput">Special Allowance</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="carAllowance" name="carAllowance" value="${emp.getCarAllowance()}">
+                    <label for="floatingInput">Car Allowance</label>
+                </div>
 
 
 
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
 
-                    <p class="mt-5 mb-3 text-muted">&copy; 2023-2024 by Rishav Dutta</p>
-                </form>           
-            </main>
+                <p class="mt-5 mb-3 text-muted">&copy; 2023-2024 by Rishav Dutta</p>
+            </form>           
+        </main>
 
-        </body>
-    </html>
+    </body>
+</html>

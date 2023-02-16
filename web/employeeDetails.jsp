@@ -9,10 +9,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
-        <!--        <link rel="stylesheet" href="css/all.min.css">-->
-        <!--        <link rel="stylesheet" href="css/reset-min.css">-->
-        <!--        <link rel="stylesheet" href="css/algolia-min.css">
+        <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
+        <!-- <link rel="stylesheet" href="css/all.min.css">-->
+        <!-- <link rel="stylesheet" href="css/reset-min.css">-->
+        <!--<link rel="stylesheet" href="css/algolia-min.css">
                 <link rel="stylesheet" href="css/header.css">
                 <link rel="stylesheet" href="css/docs.min.css">
                 <link rel="stylesheet" href="css/index.css">-->

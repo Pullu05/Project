@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -43,6 +45,8 @@ public class StateService {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+            Logger log = Logger.getLogger(StateService.class.getName());
+            log.error(LocalDateTime.now() + "-- Error in the getAllStateAccordingToCountry Process !!!!!" + " Error Code: " + ex.getErrorCode());
         }
         return stateList;
     }
